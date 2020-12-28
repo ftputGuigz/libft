@@ -6,107 +6,61 @@
 /*   By: gpetit <gpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 20:24:29 by gpetit            #+#    #+#             */
-/*   Updated: 2020/12/27 13:43:58 by gpetit           ###   ########.fr       */
+/*   Updated: 2020/12/28 16:13:34 by gpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_create_tab(long n)
+static int	ft_size(long nb)
 {
-	int		count;
-	int		sign;
-	char	*tab;
+	int	count;
 
-	sign = 0;
-	if (n < 0)
-	{
-		sign = 1;
-		n = -n;
-	}
 	count = 0;
-	if (n == 0)
-		count = 1;
-	else
+	if (nb == 0)
+		count++;
+	if (nb < 0)
 	{
-		while (n > 0)
-		{
-			n = n / 10;
-			count++;
-		}
+		nb = -nb;
+		count++;
 	}
-	tab = malloc(sizeof(char) * (count + sign + 1));
-	if (!(tab))
-		return (NULL);
-	return (tab);
+	while (nb > 0)
+	{
+		nb = nb / 10;
+		count++;
+	}
+	return (count);
 }
 
-static void	ft_rev(char *tab)
+char	*ft_itoa(long nb)
 {
+	char	*stock;
 	int		i;
-	int		j;
-	char	temp;
-	int		max;
 
-	i = 0;
-	j = 0;
-	if (tab[i] == '-')
-		i++;
-	while (tab[j])
-		j++;
-	j--;
-	max = j / 2;
-	while (i <= max)
-	{
-		temp = tab[i];
-		tab[i] = tab[j];
-		tab[j] = temp;
-		i++;
-		j--;
-	}
-}
-
-static void	ft_fill_tab(char *tab, long nb)
-{
-	int	i;
-
-	i = 0;
+	i = ft_size(nb);
+	stock = malloc(sizeof(char) * (i + 1));
+	if (!stock)
+		return (NULL);
+	stock[i--] = '\0';
 	if (nb == 0)
 	{
-		tab[i] = '0';
-		i++;
+		stock[0] = '0';
+		return (stock);
 	}
-	else
+	if (nb < 0)
 	{
-		if (nb < 0)
-		{
-			tab[i] = '-';
-			nb = -nb;
-			i++;
-		}
-		while (nb > 0)
-		{
-			tab[i] = (nb % 10) + '0';
-			nb = nb / 10;
-			i++;
-		}
+		nb = -nb;
+		stock[0] = '-';
 	}
-	tab[i] = '\0';
+	while (nb > 0)
+	{
+		stock[i] = ((nb % 10) + 48);
+		nb = nb / 10;
+		i--;
+	}
+	return (stock);
 }
 
-char	*ft_itoa(int n)
-{
-	char	*tab;
-	long	nb;
-
-	nb = (long)n;
-	tab = ft_create_tab(nb);
-	if (!tab)
-		return (NULL);
-	ft_fill_tab(tab, nb);
-	ft_rev(tab);
-	return (tab);
-}
 /*
 ** int		main()
 **{
