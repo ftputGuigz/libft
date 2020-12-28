@@ -6,7 +6,7 @@
 /*   By: gpetit <gpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 14:50:10 by gpetit            #+#    #+#             */
-/*   Updated: 2020/12/28 16:55:11 by gpetit           ###   ########.fr       */
+/*   Updated: 2020/12/28 17:28:31 by gpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,13 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *ptr, int a, size_t len);
+void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
+void				ft_putendl(char *s);
 void				ft_putendl_fd(char *s, int fd);
+void				ft_putchar(long nb);
 void				ft_putnbr_fd(int n, int fd);
+void				ft_putstr(char *s);
 void				ft_putstr_fd(char *s, int fd);
 char				**ft_split(char const *s, char c);
 char				*ft_strchr(const char *s, int c);
