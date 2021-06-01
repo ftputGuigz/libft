@@ -76,7 +76,7 @@ char	**ft_split(char const *s, char c)
 	k = 0;
 	if (!s)
 		return (NULL);
-	tab = malloc(sizeof(char*) * (count_words(s, c) + 1));
+	tab = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!tab)
 		return (NULL);
 	while (s[i] && k < count_words(s, c))
@@ -90,22 +90,3 @@ char	**ft_split(char const *s, char c)
 	tab[k] = 0;
 	return (tab);
 }
-
-/*#include <stdio.h>
-**
-**int		main()
-**{
-**	char **tab;
-**	int i;
-**	char tab1[] = "   Hello    W o rld th is iS Me           098          ";
-**	char set = 'i';
-**
-**	i = 0;
-**	tab = ft_split(tab1, set);
-**	while (i < count_words(tab1, set))
-**	{
-**		printf("%s\n", tab[i]);
-**		i++;
-**	}
-**	return (0);
-}*/

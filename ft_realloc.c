@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpetit <gpetit@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ndemont <ndemont@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 17:14:46 by gpetit            #+#    #+#             */
-/*   Updated: 2021/03/26 14:27:24 by gpetit           ###   ########.fr       */
+/*   Created: 2021/04/21 16:59:24 by gpetit            #+#    #+#             */
+/*   Updated: 2021/05/06 15:20:59 by ndemont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	*ft_realloc(void *ptr, size_t size)
 {
-	char			*s2;
-	unsigned int	i;
-	size_t			j;
+	size_t	i;
+	char	*new;
 
 	i = 0;
-	j = 0;
-	if (!s)
+	if (!ptr)
+		return (ptr = malloc(size));
+	if (!size)
 		return (NULL);
-	s2 = malloc(sizeof(char) * (len + 1));
-	if (!s2)
-		return (NULL);
-	while (s[i])
+	new = malloc(size);
+	if (!new)
+		return (0);
+	while (new && ((char *)ptr)[i] && i < size)
 	{
-		if (i >= start && j < len)
-		{
-			s2[j] = s[i];
-			j++;
-		}
+		new[i] = ((char *)ptr)[i];
 		i++;
 	}
-	s2[j] = '\0';
-	return (s2);
+	new[i] = 0;
+	free(ptr);
+	ptr = new;
+	return (ptr);
 }

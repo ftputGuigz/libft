@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_dbstrlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpetit <gpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 17:14:46 by gpetit            #+#    #+#             */
-/*   Updated: 2021/03/26 14:27:24 by gpetit           ###   ########.fr       */
+/*   Created: 2021/04/01 16:17:16 by gpetit            #+#    #+#             */
+/*   Updated: 2021/04/01 16:17:55 by gpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	ft_dbstrlen(char **str)
 {
-	char			*s2;
-	unsigned int	i;
-	size_t			j;
+	int	k;
 
-	i = 0;
-	j = 0;
-	if (!s)
-		return (NULL);
-	s2 = malloc(sizeof(char) * (len + 1));
-	if (!s2)
-		return (NULL);
-	while (s[i])
-	{
-		if (i >= start && j < len)
-		{
-			s2[j] = s[i];
-			j++;
-		}
-		i++;
-	}
-	s2[j] = '\0';
-	return (s2);
+	k = 0;
+	while (str[k])
+		k++;
+	return (k);
 }

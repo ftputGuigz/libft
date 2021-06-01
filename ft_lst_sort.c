@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lst_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpetit <gpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 17:14:46 by gpetit            #+#    #+#             */
-/*   Updated: 2021/03/26 14:27:24 by gpetit           ###   ########.fr       */
+/*   Created: 2021/04/12 16:20:12 by gpetit            #+#    #+#             */
+/*   Updated: 2021/04/12 16:20:29 by gpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lst_sort(t_list *lst, int (*f)())
 {
-	char			*s2;
-	unsigned int	i;
-	size_t			j;
+	t_list	*start;
+	void	*hold;
 
-	i = 0;
-	j = 0;
-	if (!s)
+	if (!lst)
 		return (NULL);
-	s2 = malloc(sizeof(char) * (len + 1));
-	if (!s2)
-		return (NULL);
-	while (s[i])
+	start = lst;
+	while (lst->next)
 	{
-		if (i >= start && j < len)
+		if ((*f)(lst->content, lst->next->content) > 0)
 		{
-			s2[j] = s[i];
-			j++;
+			hold = lst->content;
+			lst->content = lst->next->content;
+			lst->next->content = hold;
+			lst = start;
 		}
-		i++;
+		else
+			lst = lst->next;
 	}
-	s2[j] = '\0';
-	return (s2);
+	lst = start;
+	return (lst);
 }

@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   clean_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpetit <gpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 17:14:46 by gpetit            #+#    #+#             */
-/*   Updated: 2021/03/26 14:27:24 by gpetit           ###   ########.fr       */
+/*   Created: 2021/05/16 12:30:30 by gpetit            #+#    #+#             */
+/*   Updated: 2021/05/16 12:33:11 by gpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	clean_free(char **str)
 {
-	char			*s2;
-	unsigned int	i;
-	size_t			j;
-
-	i = 0;
-	j = 0;
-	if (!s)
-		return (NULL);
-	s2 = malloc(sizeof(char) * (len + 1));
-	if (!s2)
-		return (NULL);
-	while (s[i])
+	if (str && *str)
 	{
-		if (i >= start && j < len)
-		{
-			s2[j] = s[i];
-			j++;
-		}
-		i++;
+		free(*str);
+		*str = 0;
 	}
-	s2[j] = '\0';
-	return (s2);
 }
